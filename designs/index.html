@@ -15,7 +15,7 @@
     <!-- The header elements -->
     <header>
       <nav>
-        <div class="nav-wrapper blue darken-2">
+        <div class="nav-wrapper green darken-3">
           <a href="" class="brand-logo center">Dream Buckets</a>
           <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="#">menu_item</a></li>
@@ -29,6 +29,35 @@
 
     <!-- The main body -->
     <section>
+    <!-- Landing page impression. -->
+    <div class="slider">
+          <ul class="slides">
+            <li>
+              <img src="http://lorempixel.com/580/250/nature/1" alt="bucket_tagline">
+              <div class="caption center-align">
+                <h3>Dreams live too...</h3>
+                <h5 class="light grey-text text-lighten-3">Follow your dreams and see them come true.</h5>
+                <button class="btn waves-effect waves-light green darken-3">Start a Bucket List</button>
+              </div>
+            </li>
+            <li>
+              <img src="http://lorempixel.com/580/250/nature/1" alt="bucket_tagline">
+              <div class="caption center-align">
+                <h3>Clear vision leads to success...</h3>
+                <h5 class="light grey-text text-lighten-3">Plan your future, define your aims, and work to see those happen.</h5>
+                <button class="btn waves-effect waves-light green darken-3">Start a Bucket List</button>
+              </div>
+            </li>
+            <li>
+              <img src="http://lorempixel.com/580/250/nature/1" alt="bucket_tagline">
+              <div class="caption center-align">
+                <h3>We're here to help you grow...</h3>
+                <h5 class="light grey-text text-lighten-3">Achieve your goals and even share with your friends!</h5>
+                <button class="btn waves-effect waves-light green darken-3">Start a Bucket List</button>
+              </div>
+            </li>
+          </ul>
+        </div>
 
     </section>
 
@@ -36,7 +65,7 @@
     <footer class="page-footer grey darken-3">
     <div class="footer-copyright">
       <div class="container">
-      <p class="center flow-text">&copy; 2017 Lemayian Online | This website is <a target="_blank" class="pink-text" href="http://materializecss.com">Materialized!</a></p>
+      <p class="center flow-text">&copy; 2017 Lemayian Online | This website is <a target="_blank" class="pink-text text-lighten-1" href="http://materializecss.com">Materialized!</a></p>
       </div>
     </div>
   </footer>
@@ -45,5 +74,10 @@
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+      <!-- Initialization Scripts -->
+      <script type="text/javascript">
+        // Init Slider
+        $('.slider').slider();
+      </script>
     </body>
   </html>
