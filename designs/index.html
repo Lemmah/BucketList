@@ -18,14 +18,25 @@
         <div class="nav-wrapper green darken-3">
           <a href="" class="brand-logo center">Dream Buckets</a>
           <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="#">menu_item</a></li>
+           <li><a href="#bucketlist_definition" class="waves-effect waves-teal btn-flat">Bucket List?</a></li>
           </ul>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">menu_item2</a></li>
+            <li><a href="#log_in" class="waves-effect waves-teal btn-flat">Login</a></li>
+            <li><a href="#register" class="waves-effect waves-teal btn-flat">Register</a></li>
           </ul>
         </div>
       </nav>
     </header>
+    <!-- Defining a bucketlist -->
+      <div id="bucketlist_definition" class="modal">
+        <div class="modal-content">
+          <h4>Bucket list?</h4>
+          <p>A bucket list is, by definition, a list of things that you want to do before you die.  The term gained in popularity after the 2007 movie “The Bucket List” where Morgan Freeman and Jack Nicholson (both of whose characters are dying of cancer) create a bucket list of things to do before they die – and then actually do them. </p>
+        </div>
+        <div class="modal-footer">
+          <a href="" class="btn modal-action modal-close waves-effect waves-teal green darken-3">Ok, got it.</a>
+        </div>
+      </div>
 
     <!-- The main body -->
     <section>
@@ -87,7 +98,7 @@
             <div class="col s12 center">
             <ul class="tabs">
               <li class="tab col s6"><a class="active" href="#log_in">Login</a></li>
-              <li class="tab col s6"><a  href="#register">Register</a></li>
+              <li class="tab col s6"><a  href="#register" id="#regbtn">Register</a></li>
             </ul>
           </div>
           <div id="log_in" class="col s12">
@@ -171,6 +182,8 @@
       <script type="text/javascript">
         // Init Slider
         $('.slider').slider();
+        // Init Modal
+        $('.modal').modal();
       </script>
     </body>
   </html>
