@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+      <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+
+    <!-- The header elements -->
+    <header>
+      <nav>
+        <div class="nav-wrapper green darken-3">
+          <a href="#!" class="brand-logo center">Dream Buckets</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+           <li><a href="#bucketlist_definition" class="waves-effect waves-teal btn-flat">Bucket List?</a></li>
+          </ul>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#log_in" class="waves-effect waves-teal btn-flat">LogOut</a></li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="#">BucketList?</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Defining a bucketlist -->
+      <div id="bucketlist_definition" class="modal">
+        <div class="modal-content">
+          <h4>Bucket list?</h4>
+          <p>A bucket list is, by definition, a list of things that you want to do before you die.  The term gained in popularity after the 2007 movie “The Bucket List” where Morgan Freeman and Jack Nicholson (both of whose characters are dying of cancer) create a bucket list of things to do before they die – and then actually do them. </p>
+        </div>
+        <div class="modal-footer">
+          <a href="" class="btn modal-action modal-close waves-effect waves-teal green darken-3">Ok, got it.</a>
+        </div>
+      </div>
+
+    <!-- The main body -->
+    <section>
+
+    <div class="container">
+    <div class="row center">
+      <p class="flow-text">The ultimate bucket list!</p>
+    </div>
+      <div class="row">
+        <ul class="collection">
+           <li class="collection-item avatar">
+             <i class="material-icons circle">accessibility</i>
+             <span class="title">Run a marathon</span>
+             <p>
+                <span class="bcategory blue-text">Health and Fitness</span><br>
+                Dudu goals! I need a six pack...feeling good about myself. YOLO!
+             </p>
+             <a href="#!" class="btn waves-teal waves-teal secondary-content"><i class="material-icons">edit</i></a>
+           </li>
+           <li class="collection-item avatar">
+             <i class="material-icons circle green">insert_chart</i>
+             <span class="title">Enroll in a phd program</span>
+             <p> <span class="bcategory blue-text"> Education and Career </span><br>
+                There is a feeling that I need a greater understanding of what I do because it's what I love. I need not an Ivy league school but at least I better get going.
+             </p>
+             <a href="#!" class="btn waves-teal waves-teal secondary-content"><i class="material-icons">edit</i></a>
+           </li>
+           <li class="collection-item avatar">
+             <i class="material-icons circle red">play_arrow</i>
+             <span class="title">Visit Japanese Islands</span>
+             <p> <span class="bcategory blue-text"> Entertainment </span><br>
+                Japanese islands are an interesting place to go to. Ok, I don't know but I find this very interesting. I also want to see Hong Kong.
+             </p>
+             <a href="#!" class="btn waves-teal waves-teal secondary-content"><i class="material-icons">edit</i></a>
+           </li>
+         </ul>
+      </div>
+    </div>
+
+    <!-- Adding and editing options -->
+      <div class="fixed-action-btn">
+        <a href="#" class="btn-floating green btn-large"><i class="large material-icons">mode_edit</i></a>
+        <ul>
+          <li><a href="#" class="btn-floating yellow "><i class="large material-icons">insert_chart</i></a></li>
+          <li><a href="#" class="btn-floating blue "><i class="large material-icons">format_quote</i></a></li>
+          <li><a href="#" class="btn-floating green"><i class="large material-icons">publish</i></a></li>
+          <li><a href="#" class="btn-floating orange"><i class="large material-icons">attach_file</i></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- The  footer -->
+    <footer class="page-footer grey darken-3">
+    <div class="footer-copyright">
+      <div class="container">
+      <p class="center">&copy; 2017 Lemayian Online | This website is <a target="_blank" class="pink-text" href="http://materializecss.com">Materialized!</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+      <script type="text/javascript">
+        // Initialization scripts
+        // Init sidenav
+        $(".button-collapse").sideNav();
+        // Init Modal
+        $('.modal').modal();
+      </script>
+    </body>
+  </html>
