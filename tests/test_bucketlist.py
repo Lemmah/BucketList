@@ -84,3 +84,13 @@ class TestBucketList(unittest.TestCase):
         assertEqual(remove_item, "{} does not exist.".format(self.new_item_details[0]))
         # assert that we're raising exceptions
         assertTrue(isinstance(remove_item, Exception))
+
+    def test_creating_duplicate_bucketlist(self):
+        ''' Test raising exception when a bucket that already exists by name is created '''
+        # existing bucketlist name
+        bucket_name = "Test Bucket"
+        duplicate_bucket = BucketList(bucket_name)
+        # raising custom exception
+        assertEqual(duplicate_bucket, "A bucketlist with the name {} already exists.".format(bucket_name))
+        # assert that it's indeed and exception
+        assertTrue(isinstance(duplicate_bucket, Exception))
