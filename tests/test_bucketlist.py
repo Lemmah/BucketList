@@ -68,3 +68,18 @@ class TestBucketList(unittest.TestCase):
         assertNotIn(self.new_item_details[0], self.new_bucketlist.items)
         # ensure that the item details are indeed deleted from the object instance
         assertEqual(new_item.name, None)
+
+
+    # 3. Testing for handling of edge cases
+    def test_adding_same_bucketlist_items_twice(self):
+        ''' Ensuring user cannot the same item to a bucketlist twice '''
+        # create a bucketlist item
+        new_item = self.new_bucketlist.add_item(self.new_item_details)
+        # ensure that calling the add_item method with the same details raises and exception
+        assertRaises(Exception, self.new_bucketlist.add_item, self.new_item_details)
+
+    def test_deleting_non_existing_bucketlist_item(self):
+        ''' Testing that non-existing items do not get other items deleted '''
+        # try removing item that does not exist
+        remove_item = self.new_bucketlist.remove_item(self.new_item_details[0])
+        assertEqual(remove_item, "{} does not exist.".format(self.new_item_details[0]))
