@@ -1,0 +1,10 @@
+{
+  "name": "Dream Buckets: BucketList",
+  "description": "An awesome bucket list application, done for the andela recruitment process.",
+  "image": "heroku/python",
+  "repository": "https://github.com/lemmah/BucketList",
+  "website": "https://lemmah-bucketlist.heroku.com",
+  "keywords": ["andela bucket list", "flask bucket list" ],
+  "addons": [ "heroku-postgresql" ],
+  "author": "James Lemayian"
+}
