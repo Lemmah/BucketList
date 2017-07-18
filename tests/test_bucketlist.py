@@ -1,6 +1,7 @@
 # Testing the workings of a bucketlist
 import unittest
 from app.bucketlist import BucketList
+from app.bucketlist_item import BucketListItem
 
 class TestBucketList(unittest.TestCase):
     ''' Testing or defining the bucketlist '''
@@ -8,6 +9,7 @@ class TestBucketList(unittest.TestCase):
     def setUp(self):
         ''' Instatiating reusable variables '''
         self.new_bucketlist = BucketList("Test Bucket")
+        self.new_item_name = "ItemName"
 
     #1. Tests for successful creating of a new_bucketlist instance
     def test_bucketlist_is_created(self):
@@ -30,9 +32,10 @@ class TestBucketList(unittest.TestCase):
     def test_add_bucketlist_item(self):
         ''' Testing adding items to a bucketlist '''
         # see that an item has been added successfully by message return
-        assertEqual(self.new_bucketlist.add_item("ItemName", "Category", "Description: optional"), "ItemName added successfully")
+        add_item = self.new_bucketlist.add_item(self.new_item_name, "Category", "Description: optional")
+        assertEqual(add_item, "ItemName added successfully")
         # ensure that it is indeed in the list of items
-        assertIn("ItemName", self.new_bucketlist.items)
+        assertIn(self.new_item_name, self.new_bucketlist.items)
 
     def test_update_bucketlist_item_details(self):
         ''' Testing for updating bucketlist item details '''
@@ -42,6 +45,9 @@ class TestBucketList(unittest.TestCase):
     def test_remove_bucketlist_item(self):
         ''' Testing that items are removed from the list '''
         # assert message returned on removal
-        assertEqual(self.new_bucketlist.remove_item("ItemName", "Category", "Description: optional"), "ItemName added successfully")
+        remove_item = self.new_bucketlist.remove_item(self.new_item_name, "Category", "Description: optional")
+        assertEqual(remove_item, "ItemName removed successfully")
         # ensure that the item is no longer in the list
-        assertNotIn("ItemName", self.new_bucketlist.items)
+        assertNotIn(self.new_item_name, self.new_bucketlist.items)
+
+
