@@ -52,15 +52,19 @@ class TestBucketList(unittest.TestCase):
         # unpark the details
         item_name, category, description = new_item.name, new_item.category, new_item.description
         # confirming that name is as in new_item_details
-        assertEqual(item_name, self.new_item_detais[0])
+        assertEqual(item_name, self.new_item_details[0])
         # Test for changing the all the item details
         item_name, category, description = "ChangedName", "ChangedCategory", "ChangedDescription"
         assertEqual((new_item.name, new_item.category, new_item.details), ("ChangedName", "ChangedCategory", "ChangedDescription"))
 
     def test_remove_bucketlist_item(self):
         ''' Testing that items are removed from the list '''
+        # Create item before removal
+        new_item = self.new_bucketlist.add_item(self.new_item_details)
         # assert message returned on removal
-        remove_item = self.new_bucketlist.remove_item(self.new_item_name)
-        assertEqual(remove_item, "ItemName removed successfully")
+        remove_item = self.new_bucketlist.remove_item(self.new_item_details[0])
+        assertEqual(remove_item[1], "ItemName removed successfully")
         # ensure that the item is no longer in the list
-        assertNotIn(self.new_item_name, self.new_bucketlist.items)
+        assertNotIn(self.new_item_details[0], self.new_bucketlist.items)
+        # ensure that the item details are indeed deleted from the object instance
+        assertEqual(new_item.name, None)
