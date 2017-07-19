@@ -27,7 +27,7 @@ class TestBucketList(unittest.TestCase):
 
     def test_bucketlist_has_owner(self):
         ''' Asserting that each bucketlist has an owner '''
-        assertNotTrue(isinstance(self.new_bucketlist.owner, None))
+        assertNotTrue(self.new_bucketlist.owner, None)
 
     # 2. Tests for bucketlist behaviors
     def test_add_bucketlist_item(self):
