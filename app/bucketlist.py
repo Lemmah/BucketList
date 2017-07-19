@@ -22,3 +22,13 @@ class BucketList:
     @property
     def bucket_id(self):
         return "{}-{}".format(self.owner, self.name)
+
+    def add_item(self, item_details, owner):
+        # initialize an instance of a BucketListItem
+        item_name = item_details[0]
+        # ensure that items does not exist in items
+        if item_name in self.items:
+            raise Exception("{} already exists!".format(item_name))
+        self.items.append(item_name)
+        new_item = BucketListItem(*item_details, bucketlist=owner)
+        return (new_item, "{} added successfully".format(item_name))
