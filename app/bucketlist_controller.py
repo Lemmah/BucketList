@@ -32,3 +32,8 @@ class BucketListController:
         # change name in bucketlist instance
         target_bucketlist.name = new_name
         return "{} bucketlist has been renamed to {}".format(old_name, new_name)
+
+    def change_bucketlist_details(self, target_bucketlist, new_bucketlist_description):
+        ''' Functionality to update bucketlist description '''
+        target_bucketlist.description = new_bucketlist_description
+        return "{} has been updated accordingly".format(target_bucketlist.name)
