@@ -9,13 +9,13 @@ class TestBucketListItem(unittest.TestCase):
 
     def setUp(self):
         ''' Initializing reusable variables '''
-        self.bucketlist_item_details = ("bucketlist_item_name", "category", "description: optional", "bucketlist_id")
-        self.bucketlist_item = BucketListItem(self.bucketlist_item_details)
+        self.bucketlist_item_details = "bucketlist_item_name", "category", "description: optional", "bucketlist_id"
+        self.bucketlist_item = BucketListItem("bucketlist_item_name", "category", "description: optional", "bucketlist_id")
 
     # 1. Ensure that a bucketlist item is created
     def test_bucketlist_item_created(self):
         ''' Ensuring that a bucketlist item has been instantiated '''
-        assertTrue(isinstance(self.bucketlist_item, BucketListItem))
+        assertEqual(isinstance(self.bucketlist_item, BucketListItem), True)
 
     def test_bucketlist_item_belongs_to_bucketlist(self):
         ''' Ensuring that the bucketlist_id is not None '''
