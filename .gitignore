@@ -1,2 +1,3 @@
 appEnv
 *.pyc
+*cache*
