@@ -37,3 +37,10 @@ class TestBucketListItem(unittest.TestCase):
                 self.bucketlist_item.change_status()
                 bucketlist_item_status = self.bucketlist_item.status.lower()
                 assertEqual(bucketlist_item_status, "done")
+
+        # 3. Handling edge cases
+        def test_bucketlist_item_duplicate_item(self):
+            ''' Test that duplicate bucketlist_items raise exception '''
+            # creating a bucketlist with existing details
+            duplicate_bucketlist_item = BucketListItem(self.bucketlist_item_details)
+            assertTrue(isinstance(duplicate_bucketlist_item, Exception))
