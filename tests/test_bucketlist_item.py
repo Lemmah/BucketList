@@ -10,7 +10,7 @@ class TestBucketListItem(unittest.TestCase):
     def setUp(self):
         ''' Initializing reusable variables '''
         self.name, self.category, self.description, self.bucketlist = "bucketlist_item_name", "category", "description: optional", "bucketlist_id"
-        self.bucketlist_item = BucketListItem(self.name, self.category, self.description, self.bucketlist)
+        self.bucketlist_item = BucketListItem(self.name, self.category, self.description, bucketlist=self.bucketlist)
 
     # 1. Ensure that a bucketlist item is created
     def test_bucketlist_item_created(self):
