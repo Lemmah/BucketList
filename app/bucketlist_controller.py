@@ -37,3 +37,10 @@ class BucketListController:
         ''' Functionality to update bucketlist description '''
         target_bucketlist.description = new_bucketlist_description
         return "{} has been updated accordingly".format(target_bucketlist.name)
+
+    def delete_bucketlist(self, bucketlist):
+        ''' Functionality to delete bucketlist '''
+        target_bucketlist = bucketlist
+        self.available_bucketlists.remove(bucketlist.name)
+        bucketlist.name = None
+        return "Successfully deleted {} bucketlist".format(target_bucketlist)
