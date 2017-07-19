@@ -21,3 +21,14 @@ class BucketListController:
         self.available_bucketlists.append(bucketlist_details[0])
         new_bucketlist = BucketList(*bucketlist_details, owner=self.user)
         return (new_bucketlist, "{} bucketlist has been created".format(bucketlist_name))
+
+    def rename_bucketlist(self, target_bucketlist, new_name):
+        ''' Functionality to rename a bucketlist '''
+        old_name = target_bucketlist.name
+        # change name in list of available bucketlists
+        for bucketlist in self.available_bucketlists:
+            if bucketlist == target_bucketlist.name:
+                bucketlist = new_name
+        # change name in bucketlist instance
+        target_bucketlist.name = new_name
+        return "{} bucketlist has been renamed to {}".format(old_name, new_name)
