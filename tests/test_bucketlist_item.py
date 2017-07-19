@@ -24,3 +24,16 @@ class TestBucketListItem(unittest.TestCase):
         def test_bucketlist_item_has_status(self):
             ''' Assert that bucketlist_item is either done or in_progress '''
             assertNotTrue(isinstance(self.bucketlist_item.status, None))
+
+        # 2. Test bucketlist item behaviours
+        def test_bucketlist_item_change_status(self):
+            ''' Test that status of bucketList can change from done to in_progress and viceversa '''
+            bucketlist_item_status = self.bucketlist_item.status.lower()
+            if bucketlist_item_status == "done":
+                self.bucketlist_item.change_status()
+                bucketlist_item_status = self.bucketlist_item.status.lower()
+                assertNotTrue(bucketlist_item_status == "done")
+            else:
+                self.bucketlist_item.change_status()
+                bucketlist_item_status = self.bucketlist_item.status.lower()
+                assertEqual(bucketlist_item_status, "done")
