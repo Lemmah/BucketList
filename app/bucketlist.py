@@ -18,3 +18,7 @@ class BucketList:
         else:
             self.items = []
         self.owner = owner
+
+    @property
+    def bucket_id(self):
+        return "{}-{}".format(self.owner, self.name)
