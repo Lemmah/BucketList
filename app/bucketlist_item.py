@@ -17,3 +17,11 @@ class BucketListItem:
             self.status = "in_progress"
         else:
             self.status = status
+
+    def change_status(self):
+        ''' toggle the status of a bucketlist item '''
+        if self.status == "done":
+            self.status == "in_progress"
+        else:
+            self.status = "done"
+        return self.status
