@@ -39,3 +39,9 @@ class BucketList:
         self.items.remove(item_name)
         # the class instance of bucketlist item will be garbage collected
         return "{} removed successfully".format(item_name)
+
+    def __repr__(self):
+        ''' Represent item by name '''
+        if self.name is None:
+            return 'Bucketlist does not exist'
+        return self.name
