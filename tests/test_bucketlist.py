@@ -82,14 +82,3 @@ class TestBucketList(unittest.TestCase):
         # Ensure that removing an item that does not exist raises an error
         self.assertRaises(Exception, self.new_bucketlist.remove_item, self.new_item_details[0])
 
-''' A bucketlist cannot create itself
-    def test_creating_duplicate_bucketlist(self):
-        '' Test raising exception when a bucket that already exists by name is created ''
-        # existing bucketlist name
-        bucket_name = "Test Bucket"
-        duplicate_bucket = BucketList(bucket_name, owner=self.bucketlist_owner)
-        # raising custom exception
-        self.assertEqual(duplicate_bucket, "A bucketlist with the name {} already exists.".format(bucket_name))
-        # assert that it's indeed and exception
-        self.assertTrue(isinstance(duplicate_bucket, Exception))
-'''
