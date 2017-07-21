@@ -13,7 +13,6 @@ class BucketListController:
 
     def add_bucketlist(self, bucketlist_details):
         ''' Functionality to create new bucketlist '''
-        owner = self.user
         bucketlist_name = bucketlist_details[0]
         if bucketlist_name in self.available_bucketlists:
             raise Exception("A bucketlist with the name {} already exists")
