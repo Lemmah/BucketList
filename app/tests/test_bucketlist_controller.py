@@ -1,8 +1,8 @@
 # Testing the super class that performs CRUD operations
 
 import unittest
-from app.bucketlist_controller import BucketListController
-from app.bucketlist import BucketList
+from app.bucketlist.bucketlist_controller import BucketListController
+from app.bucketlist.bucketlist import BucketList
 
 
 class TestBucketListController(unittest.TestCase):
