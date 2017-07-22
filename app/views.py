@@ -10,4 +10,7 @@ def index():
 def dashboard():
   return render_template("dashboard.html")
 
+@app.route('/logout')
+def logout():
+  return render_template("index.html")
 
