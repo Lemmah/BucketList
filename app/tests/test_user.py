@@ -27,4 +27,8 @@ class TestUser(unittest.TestCase):
     assertEqual(self.user_instance.email, self.user_details[0])
     assertEqual(self.user_instance.password, self.user_details[1])
 
-  
+  def test_user_representation(self):
+    ''' Assert that __repr__ function returns a useful object representation '''
+    self.assertEqual(dict(self.user_instance), {'jnlemayian@gmail.com' : ['Password', 'James Lemayian']})
+
+  ## The user is just an extension of the bucketlist controller
