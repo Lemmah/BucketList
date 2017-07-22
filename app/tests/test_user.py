@@ -21,14 +21,5 @@ class TestUser(unittest.TestCase):
     ''' Test that user inherits bucketlist controller '''
     self.assertEqual(isinstance(self.user_instance, BucketListController.User), True)
 
-  def test_user_has_all_properties(self):
-    ''' Ensure user has name, email, password '''
-    assertEqual(self.user_instance.name, self.user_details[2])
-    assertEqual(self.user_instance.email, self.user_details[0])
-    assertEqual(self.user_instance.password, self.user_details[1])
+  
 
-  def test_user_representation(self):
-    ''' Assert that __repr__ function returns a useful object representation '''
-    self.assertEqual(dict(self.user_instance), {'jnlemayian@gmail.com' : ['Password', 'James Lemayian']})
-
-  ## The user is just an extension of the bucketlist controller
