@@ -1,6 +1,6 @@
 # This is the super class, Controlling all the operations on the bucketlist and bucketlist items
 
-from app.bucketlist import BucketList
+from app.bucketlist.bucketlist import BucketList
 
 
 class BucketListController:
