@@ -77,19 +77,19 @@
             </ul>
           </div>
           <div id="log_in" class="col s12">
-            <form class="col s12" method="">
+            <form class="col s12" method="post" action="/login">
             <div class="input-field col s12">
             <i class="material-icons prefix">mail</i>
-            <input id="email" type="email" class="validate" name="Client Email:">
+            <input id="email" type="email" class="validate" name="email">
             <label for="email" data-error="This is is not a valid email address." data-success="I hope your email works!">Your email Adrress</label>
             </div>
             <div class="input-field col s12">
             <i class="material-icons prefix">mode_edit</i>
-            <input id="password" type="password" name="Client Email:">
+            <input id="password" type="password" name="password">
             <label for="password">Enter your password</label>
             </div>
             <div class="row center">
-              <button class="btn col s12"><i class="material-icons right">send</i>Login</button>
+              <button class="btn col s12" type="submit"><i class="material-icons right">send</i>Login</button>
             </div>
             <div class="row center">
               <button class="btn blue darken-3 col s12"><i class="material-icons left">cloud</i>Login with Facebook</button>
@@ -100,25 +100,20 @@
             </form>
           </div>
           <div id="register" class="col s12">
-            <form class="col s12" method="">
+            <form class="col s12" method="post" action="/register">
             <div class="input-field col s12">
             <i class="material-icons prefix">account_circle</i>
-            <input id="icon_prefix" type="text" class="validate" name="Client Name:">
+            <input id="icon_prefix" type="text" class="validate" name="username">
             <label for="icon_prefix">Your Name(s)</label>
             </div>
             <div class="input-field col s12">
-            <i class="material-icons prefix">phone</i>
-            <input id="icon_telephone" type="tel" class="validate" name="Mobile Number:">
-            <label for="icon_telephone">Mobile Number</label>
-            </div>
-            <div class="input-field col s12">
             <i class="material-icons prefix">mail</i>
-            <input id="email" type="email" class="validate" name="Client Email:">
+            <input id="email" type="email" class="validate" name="email">
             <label for="email" data-error="This is is not a valid email address." data-success="I hope your email works!">Your email Adrress</label>
             </div>
             <div class="input-field col s12">
             <i class="material-icons prefix">mode_edit</i>
-            <input id="password" type="password" name="Client Email:">
+            <input id="password" type="password" name="password">
             <label for="password">Enter your password</label>
             </div>
             <div class="input-field col s12">
