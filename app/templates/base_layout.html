@@ -19,16 +19,7 @@
         <div class="nav-wrapper green darken-3">
           <a href="#!" class="brand-logo center">Dream Buckets</a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-           <li><a href="#bucketlist_definition" class="waves-effect waves-teal btn-flat">Bucket List?</a></li>
-          </ul>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#log_in" class="waves-effect waves-teal btn-flat">LogOut</a></li>
-          </ul>
-          <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">BucketList?</a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
+	  {% block nav_menu_items %}{% endblock %}
         </div>
       </nav>
     </header>
@@ -67,8 +58,21 @@
 	$(".button-collapse").sideNav();
 	// Init Modal
 	$('.modal').modal();
-        // Init Slider
-    	$('.slider').slider();
+	// Init Slider
+	$('.slider').slider();
+	</script>
+	<script>
+	// Script for toggling the login-register tabs active class
+	$(document).ready(function(){
+	$(".login").click(function(){
+	    $("#register_tab").removeClass("active");
+	    $("#login_tab").addClass("active");
+	});
+	$(".register").click(function(){
+	    $("#login_tab").removeClass("active");
+	    $("#register_tab").addClass("active");
+	});
+	});
 	</script>
     </body>
   </html>
