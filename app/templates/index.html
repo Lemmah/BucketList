@@ -1,52 +1,20 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
-      <link rel="stylesheet" type="text/css" href="css/custom.css">
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-
-    <body>
-
-    <!-- The header elements -->
-    <header>
-      <nav>
-        <div class="nav-wrapper green darken-3">
-          <a href="#!" class="brand-logo center">Dream Buckets</a>
-          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-           <li><a href="#bucketlist_definition" class="waves-effect waves-teal btn-flat">Bucket List?</a></li>
-          </ul>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#log_in" class="waves-effect waves-teal btn-flat">Login</a></li>
-            <li><a href="#register" class="waves-effect waves-teal btn-flat">Register</a></li>
-          </ul>
-          <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">BucketList?</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <!-- Defining a bucketlist -->
-      <div id="bucketlist_definition" class="modal">
-        <div class="modal-content">
-          <h4>Bucket list?</h4>
-          <p>A bucket list is, by definition, a list of things that you want to do before you die.  The term gained in popularity after the 2007 movie “The Bucket List” where Morgan Freeman and Jack Nicholson (both of whose characters are dying of cancer) create a bucket list of things to do before they die – and then actually do them. </p>
-        </div>
-        <div class="modal-footer">
-          <a href="" class="btn modal-action modal-close waves-effect waves-teal green darken-3">Ok, got it.</a>
-        </div>
-      </div>
-
-    <!-- The main body -->
-    <section>
+{% extends "base_layout.html" %}
+{% block title %}Dream Buckets | Home {% endblock %}
+{% block nav_menu_items %}
+  <ul id="nav-mobile" class="left hide-on-med-and-down">
+   <li><a href="#bucketlist_definition" class="waves-effect waves-teal btn-flat">Bucket List?</a></li>
+  </ul>
+  <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <li><a href="#log_in" class="waves-effect waves-teal btn-flat login">Login</a></li>
+    <li><a href="#register" class="waves-effect waves-teal btn-flat register">Register</a></li>
+  </ul>
+  <ul class="side-nav" id="mobile-demo">
+    <li><a href="#bucketlist_description">BucketList?</a></li>
+    <li><a href="#log_in">Login</a></li>
+    <li><a href="#register">Register</a></li>
+   </ul>
+{% endblock %}
+{% block body %}
     <!-- Landing page impression. -->
     <div class="slider">
           <ul class="slides">
@@ -104,24 +72,24 @@
           <div class="icon-block">
             <div class="col s12 center">
             <ul class="tabs">
-              <li class="tab col s6"><a class="active" href="#log_in">Login</a></li>
-              <li class="tab col s6"><a  href="#register" id="#regbtn">Register</a></li>
+              <li class="tab col s6"><a  href="#log_in" id="login_tab">Login</a></li>
+              <li class="tab col s6"><a  href="#register" id="register_tab">Register</a></li>
             </ul>
           </div>
           <div id="log_in" class="col s12">
-            <form class="col s12" method="">
+            <form class="col s12" method="post" action="/login">
             <div class="input-field col s12">
             <i class="material-icons prefix">mail</i>
-            <input id="email" type="email" class="validate" name="Client Email:">
+            <input id="email" type="email" class="validate" name="email">
             <label for="email" data-error="This is is not a valid email address." data-success="I hope your email works!">Your email Adrress</label>
             </div>
             <div class="input-field col s12">
             <i class="material-icons prefix">mode_edit</i>
-            <input id="password" type="password" name="Client Email:">
+            <input id="password" type="password" name="password">
             <label for="password">Enter your password</label>
             </div>
             <div class="row center">
-              <button class="btn col s12"><i class="material-icons right">send</i>Login</button>
+              <button class="btn col s12" type="submit"><i class="material-icons right">send</i>Login</button>
             </div>
             <div class="row center">
               <button class="btn blue darken-3 col s12"><i class="material-icons left">cloud</i>Login with Facebook</button>
@@ -132,25 +100,20 @@
             </form>
           </div>
           <div id="register" class="col s12">
-            <form class="col s12" method="">
+            <form class="col s12" method="post" action="/register">
             <div class="input-field col s12">
             <i class="material-icons prefix">account_circle</i>
-            <input id="icon_prefix" type="text" class="validate" name="Client Name:">
+            <input id="icon_prefix" type="text" class="validate" name="username">
             <label for="icon_prefix">Your Name(s)</label>
             </div>
             <div class="input-field col s12">
-            <i class="material-icons prefix">phone</i>
-            <input id="icon_telephone" type="tel" class="validate" name="Mobile Number:">
-            <label for="icon_telephone">Mobile Number</label>
-            </div>
-            <div class="input-field col s12">
             <i class="material-icons prefix">mail</i>
-            <input id="email" type="email" class="validate" name="Client Email:">
+            <input id="email" type="email" class="validate" name="email">
             <label for="email" data-error="This is is not a valid email address." data-success="I hope your email works!">Your email Adrress</label>
             </div>
             <div class="input-field col s12">
             <i class="material-icons prefix">mode_edit</i>
-            <input id="password" type="password" name="Client Email:">
+            <input id="password" type="password" name="password">
             <label for="password">Enter your password</label>
             </div>
             <div class="input-field col s12">
@@ -169,23 +132,4 @@
 
     </div>
         </div>
-
-    </section>
-
-    <!-- The  footer -->
-    <footer class="page-footer grey darken-3">
-    <div class="footer-copyright">
-      <div class="container">
-      <p class="center">&copy; 2017 Lemayian Online | This website is <a target="_blank" class="pink-text text-lighten-1" href="http://materializecss.com">Materialized!</a></p>
-      </div>
-    </div>
-  </footer>
-
-
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-      <!-- Initialization Scripts -->
-      <script type="text/javascript" src="static/js/initialize.js"></script>
-    </body>
-  </html>
+{% endblock %}

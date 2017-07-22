@@ -1,7 +1,7 @@
 # Test or Define a bucketlist Item
 
 import unittest
-from app.bucketlist_item import BucketListItem
+from app.bucketlist.bucketlist_item import BucketListItem
 
 
 class TestBucketListItem(unittest.TestCase):
