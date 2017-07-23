@@ -41,7 +41,7 @@ class TestUser(unittest.TestCase):
   ## The user is just an extension of the bucketlist controller
   # 2. Test bucketlist controller operations
   def test_user_can_create_bucketlist(self):
-      ''' Asserting that a bucketlist controller can create a bucketlist '''
+      ''' Asserting that a user can create a bucketlist '''
       new_bucketlist_details = ("NewName", "Description: Optional")
       new_bucketlist = self.user_instance.add_bucketlist(new_bucketlist_details)
       self.assertEqual(isinstance(new_bucketlist[0], BucketList), True)
@@ -49,7 +49,7 @@ class TestUser(unittest.TestCase):
       self.assertEqual(new_bucketlist[1], "{} bucketlist has been created".format(new_bucketlist_details[0]))
 
   def test_user_instance_can_update_bucketlist(self):
-      ''' Asserting that bucketlist controller can change bucketlist details '''
+      ''' Asserting that user can change bucketlist details '''
       # rename, change details
       new_name, new_description = "NewBucket", "NewDetails: This is new"
       old_name = self.bucketlist.name
@@ -61,7 +61,7 @@ class TestUser(unittest.TestCase):
       self.assertEqual(self.bucketlist.description, new_description)
 
   def test_user_instance_can_delete_bucketlist(self):
-      ''' Asserting that a bucketlist controller can delete a bucketlist '''
+      ''' Asserting that a user can delete a bucketlist '''
       # add set up test bucketlist to list of available bucketlists
       self.user_instance.available_bucketlists.append(self.bucketlist.name)
       self.assertEqual(self.bucketlist.name in self.user_instance.available_bucketlists, True)
