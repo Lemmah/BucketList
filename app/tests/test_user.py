@@ -48,4 +48,16 @@ class TestUser(unittest.TestCase):
       self.assertEqual(new_bucketlist_details[0] in self.user_instance.available_bucketlists, True)
       self.assertEqual(new_bucketlist[1], "{} bucketlist has been created".format(new_bucketlist_details[0]))
 
-  
+  def test_user_instance_can_update_bucketlist(self):
+      ''' Asserting that bucketlist controller can change bucketlist details '''
+      # rename, change details
+      new_name, new_description = "NewBucket", "NewDetails: This is new"
+      old_name = self.bucketlist.name
+      rename = self.user_instance.rename_bucketlist(self.bucketlist, new_name)
+      self.assertEqual(rename, "{} bucketlist has been renamed to {}".format(old_name, new_name))
+      self.assertEqual(self.bucketlist.name, new_name)
+      change_details = self.user_instance.change_bucketlist_details(self.bucketlist, new_description)
+      self.assertEqual(change_details, "{} has been updated accordingly".format(self.bucketlist.name))
+      self.assertEqual(self.bucketlist.description, new_description)
+
+ 
