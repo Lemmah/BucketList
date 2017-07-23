@@ -25,7 +25,7 @@ class TestUser(unittest.TestCase):
     ''' Test that user inherits bucketlist controller '''
     # Assert that it's a user instance
     self.assertEqual(isinstance(self.user_instance, User), True)
-    # Assert that it's also a bucketlist instance
+    # Assert that it's also a bucketlist controller instance
     self.assertEqual(isinstance(self.user_instance, BucketListController), True)
 
   def test_user_has_all_properties(self):
