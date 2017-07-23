@@ -66,5 +66,6 @@ class TestUser(unittest.TestCase):
       self.user_instance.available_bucketlists.append(self.bucketlist.name)
       self.assertEqual(self.bucketlist.name in self.user_instance.available_bucketlists, True)
       delete_bucketlist = self.user_instance.delete_bucketlist(self.bucketlist)
+      self.assertEqual(delete_bucketlist, "Successfully deleted {} bucketlist".format(self.bucketlist.name))
       self.assertEqual(self.bucketlist.name not in self.user_instance.available_bucketlists, True)
       self.assertEqual(str(self.bucketlist), 'Bucketlist does not exist')
