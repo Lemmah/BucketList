@@ -60,4 +60,11 @@ class TestUser(unittest.TestCase):
       self.assertEqual(change_details, "{} has been updated accordingly".format(self.bucketlist.name))
       self.assertEqual(self.bucketlist.description, new_description)
 
- 
+  def test_user_instance_can_delete_bucketlist(self):
+      ''' Asserting that a bucketlist controller can delete a bucketlist '''
+      # add set up test bucketlist to list of available bucketlists
+      self.user_instance.available_bucketlists.append(self.bucketlist.name)
+      self.assertEqual(self.bucketlist.name in self.user_instance.available_bucketlists, True)
+      delete_bucketlist = self.user_instance.delete_bucketlist(self.bucketlist)
+      self.assertEqual(self.bucketlist.name not in self.user_instance.available_bucketlists, True)
+      self.assertEqual(str(self.bucketlist), 'Bucketlist does not exist')
