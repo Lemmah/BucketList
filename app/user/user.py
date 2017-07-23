@@ -12,4 +12,7 @@ class User(BucketListController):
     self.email = email
     self.password = password
 
+  def __repr__(self):
+    ''' A representation of the user object '''
+    return "{}".format(self.name)
 
