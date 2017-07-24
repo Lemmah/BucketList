@@ -29,8 +29,8 @@ class BucketList:
         # ensure that items does not exist in items
         if item_name in self.items:
             raise Exception("{} already exists!".format(item_name))
-        self.items.append(item_name)
         new_item = BucketListItem(*item_details, bucketlist=owner)
+        self.items.append(new_item)
         return (new_item, "{} added successfully".format(item_name))
 
     def remove_item(self, item_name):
