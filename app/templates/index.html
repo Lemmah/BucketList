@@ -46,6 +46,15 @@
         </div>
 
         <div class="container">
+	<div class="row">
+	<div class="col s12 m4"></div>
+	<div class="col s12 m4 center card ">
+	{% for message in get_flashed_messages() %}
+          <p class="red-text">{{ message }}</p>
+        {% endfor %}
+	</div>
+	<div class="col s12 m4"></div>
+	</div>
           <div class="section">
 
       <!--   Icon Section   -->
