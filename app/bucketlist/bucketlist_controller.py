@@ -17,9 +17,9 @@ class BucketListController:
         if bucketlist_name in self.available_bucketlists:
             raise Exception("A bucketlist with the name {} already exists")
         # add name of new bucketlist to list of available bucketlists
-        self.available_bucketlists.append(bucketlist_details[0])
         new_bucketlist = BucketList(*bucketlist_details, owner=self.user)
-        return (new_bucketlist, "{} bucketlist has been created".format(bucketlist_name))
+        self.available_bucketlists.append(new_bucketlist)
+        return (new_bucketlist, "{} bucketlist has been created".format(new_bucketlist))
 
     def rename_bucketlist(self, target_bucketlist, new_name):
         ''' Functionality to rename a bucketlist '''
