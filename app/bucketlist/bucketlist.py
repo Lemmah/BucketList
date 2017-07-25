@@ -8,15 +8,9 @@ class BucketList:
 
     def __init__(self, name, details=None, items=None, owner=None):
         ''' Constructing and instance of the object '''
-        # Every bucketlist must have an owner
-        if owner is None:
-            raise Exception("Every bucketlist must have an owner")
         self.name = name
         self.details = details
-        if items is not None:
-            self.items = items
-        else:
-            self.items = []
+        self.items = []
         self.owner = owner
 
     @property
