@@ -1,7 +1,7 @@
 from flask import session
 from flask import request
 from flask import flash
-from flask import render_template
+from flask import render_template, redirect, url_for
 from app.bucketlist.bucketlist import BucketList
 from app.bucketlist.bucketlist_controller import BucketListController
 from app.user.user import User
@@ -9,6 +9,12 @@ from app.user.user import User
 from app import app
 # List of registered users for non-persistent data
 registered_users = []
+
+def get_session_user():
+    ''' Get the object of the session user '''
+    for user in registered_users:
+        if user.email == session['user']:
+            return user
 
 @app.route('/logout/')
 def logout():
@@ -27,11 +33,9 @@ def login():
   for user in registered_users:
       if user.email == email:
           if user.password == password:
-              flash("Login successful")
-              # After validation, set session to True
               session['logged_in'] = True
               session['user'] = email
-              return render_template("dashboard.html")
+              return redirect(url_for("dashboard"))
           else:
               flash("Wrong Username or Password")
               return render_template("index.html")
@@ -56,25 +60,35 @@ def register():
 @app.route('/')
 def index():
   ''' Loading the home page for user login or registration '''
+  session['logged_in'] = False
   return render_template("index.html")
 
 @app.route('/dashboard/')
 def dashboard():
   ''' Dashboard for user interaction with bucketlist: has a list of bucketlists '''
   if session['logged_in']:
-    return render_template("dashboard.html")
+      if get_session_user() is not None:
+          no_bucketlists = (len(get_session_user().available_bucketlists) == 0)
+          session_user = get_session_user()
+          return render_template("dashboard.html", username=get_session_user().name, no_bucketlists=no_bucketlists, session_user=session_user)
+      else:
+          flash("Your session has expired.")
+          return render_template("index.html")
   flash("You are not logged in. Please log in.")
   return render_template("index.html")
 
 # Bucketlist CRUD
-@app.route('/dashboard/create_bucketlist/')
+@app.route('/dashboard/create_bucketlist/', methods=['POST'])
 def create_bucketlist():
   ''' Create bucketlist from form data '''
-  user = BucketListController("Test User")
-  add_user = user.add_bucketlist(("Test", "Travelling"))
-  bucketlist = add_user[0]
-  success_message = add_user[1]
-  return "BucketList: {} Description: {} Owner: {} :: {}".format(bucketlist.name, bucketlist.details, bucketlist.owner, success_message)
+  name = request.form.get('bucketlist_name')
+  description = request.form.get('bucketlist_desc')
+  bucketlist_details = (name, description)
+  if get_session_user is not None:
+      create_bucketlist = get_session_user().add_bucketlist(bucketlist_details)
+      return redirect("dashboard/")
+  flash("Your session has expired.")
+  return render_template("index.html")
 
 @app.route('/dashboard/bucketlists/<bucketlist_name>/')
 def display_bucketlist_details(bucketlist_name):
@@ -84,10 +98,18 @@ def display_bucketlist_details(bucketlist_name):
 @app.route('/dashboard/bucketlists/<bucketlist_name>/delete/')
 def delete_bucketlist(bucketlist_name):
   ''' Deletes the bucketlist with the name name '''
-  return "This is yet to be implemented"
+  if get_session_user is not None:
+      session_user = get_session_user()
+      for bucketlist in session_user.available_bucketlists:
+          if str(bucketlist) == bucketlist_name:
+              delete_bucketlist = session_user.delete_bucketlist(bucketlist)
+              flash(delete_bucketlist)
+              return redirect("/dashboard/")
+  flash("The bucketlist you are trying to delete is not available")
+  return redirect("/dashboard/")
 
 @app.route('/dashboard/bucketlists/<bucketlist_name>/update/', methods=['POST'])
-def update_bucketlist_details(bucketlist_name, new_details):
+def update_bucketlist_details(bucketlist_name):
   ''' Updates the bucketlist details from a form '''
   return "This feature is yet to be implemented"
 
