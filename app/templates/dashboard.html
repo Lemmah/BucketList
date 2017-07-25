@@ -5,6 +5,7 @@
    <li><a href="#bucketlist_definition" class="waves-effect waves-teal btn-flat">Bucket List?</a></li>
   </ul>
   <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <li><a href="#" class="waves-effect waves-teal btn-flat">{{ username }}</a></li>
     <li><a href="/logout/" class="waves-effect waves-teal btn-flat">LogOut</a></li>
   </ul>
   <ul class="side-nav" id="mobile-demo">
@@ -15,47 +16,116 @@
 {% block body %}
     <div class="container">
     <div class="row center">
-      <p class="flow-text">The ultimate bucket list!</p>
-    </div>
+      <p class="flow-text">Before you die...</p>	
+        <div class="col s12 m4"></div>
+	<div class="col s12 m4 center card ">
+	{% for message in get_flashed_messages() %}
+          <p class="red-text">{{ message }}</p>
+        {% endfor %}
+	</div>
+	<div class="col s12 m4"></div>
+	</div>
       <div class="row">
         <ul class="collection">
-           <li class="collection-item avatar">
-             <i class="material-icons circle">accessibility</i>
-             <span class="title">Run a marathon</span>
-             <p>
-                <span class="bcategory blue-text">Health and Fitness</span><br>
-                Dudu goals! I need a six pack...feeling good about myself. YOLO!
-             </p>
-             <a href="#!" class="btn waves-teal waves-teal secondary-content"><i class="material-icons">edit</i></a>
-           </li>
+	   {% if not no_bucketlists %}
+	   {% for bucketlist in session_user.available_bucketlists %}
            <li class="collection-item avatar">
              <i class="material-icons circle green">insert_chart</i>
-             <span class="title">Enroll in a phd program</span>
-             <p> <span class="bcategory blue-text"> Education and Career </span><br>
-                There is a feeling that I need a greater understanding of what I do because it's what I love. I need not an Ivy league school but at least I better get going.
+             <span class="title">{{ bucketlist.name }}</span>
+             <p> <span class="blue-text"> {{ bucketlist.details }}</span><br>
+                {% for item in bucketlist.items %}
+	        <div class="chip">
+		   {{ item }}
+		</div>
+		{% endfor %}
              </p>
-             <a href="#!" class="btn waves-teal waves-teal secondary-content"><i class="material-icons">edit</i></a>
-           </li>
-           <li class="collection-item avatar">
-             <i class="material-icons circle red">play_arrow</i>
-             <span class="title">Visit Japanese Islands</span>
-             <p> <span class="bcategory blue-text"> Entertainment </span><br>
-                Japanese islands are an interesting place to go to. Ok, I don't know but I find this very interesting. I also want to see Hong Kong.
-             </p>
-             <a href="#!" class="btn waves-teal waves-teal secondary-content"><i class="material-icons">edit</i></a>
-           </li>
+	     <!-- Dropdown of Options available to a bucketlist -->
+
+	 <div class="fixed-action-btn horizontal secondary-content">
+	    <a class="btn-floating btn-large green">
+	      <i class="large material-icons">settings</i>
+	    </a>
+	    <ul>
+	      <li><a href="bucketlists/{{ bucketlist }}/delete/" class="btn-floating red tooltipped" data-position="top" data-delay="10" data-tooltip="Delete Bucketlist"><i class="material-icons">delete</i></a></li>
+	      <li><a class="btn-floating green tooltipped" data-position="top" data-delay="10" data-tooltip="Add Items"><i class="material-icons">note_add</i></a></li>
+	      <li><a href="#edit_bucketlist" class="btn-floating blue tooltipped" data-position="top" data-delay="10" data-tooltip="Edit Bucketlist"><i class="material-icons">mode_edit</i></a></li>
+	    </ul>
+	  </div>
+	  <!-- Form for editing a Bucketlist: it's a modal! -->
+      <div id="edit_bucketlist" class="modal">
+        <div class="modal-content">
+          <h4>Edit {{ bucketlist.name }}</h4>
+          <div id="create_bucketlist" class="col s12">
+            <form class="col s12" method="post" action="bucketlists/{{ bucketlist.name }}/update/">
+            <div class="input-field col s12">
+            <i class="material-icons prefix">assignment</i>
+            <input id="icon_prefix" type="text" name="bucketlist_name" value="{{ bucketlist.name }}" required>
+            <label for="icon_prefix">Bucketlist Name</label>
+            </div>
+	    <div class="input-field col s12">
+	     <i class="material-icons prefix">assessment</i>
+             <textarea id="textarea1" class="materialize-textarea" name="bucketlist_desc">{{ bucketlist.details }}</textarea>
+             <label for="icon_prefix">Bucketlist Description</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="" class="left btn modal-action modal-close waves-effect waves-teal red darken-3"><i class="material-icons right">cancel</i>Cancel</a>
+	  <button class="btn waves-teal green darken-3"><i class="material-icons right">done_all</i>Update</button>
+        </div>
+	</form>
+      </div>
+	   {% endfor %}
+	   {% else %}
+	    <li class="collection-item avatar">
+            <div class="center">
+	     <br><br>
+	     <p class="flow-text"> There are no bucketlists in here... </p><br><br>
+             <p><a onclick="$('.tap-target').tapTarget('open')" class="waves-effect waves-light btn green">Create First Bucketlist</a></p>
+	     <br><br>
+            </div>
+	    </li>
+	   {% endif %}
          </ul>
       </div>
     </div>
+         <!-- Super Add Button: it's a tap target -->
+         <div class="fixed-action-btn">
+           <a id="menu" class="waves-effect waves-light btn btn-floating btn-large green" href="#create_bucketlist">
+             <i class="material-icons">add</i>
+           </a>
+         </div>
+ 
+	 <!-- Welcome message: it's the tap content -->
+         <div class="tap-target green" data-activates="menu">
+           <div class="tap-target-content white-text">
+             <h5>The Super Add Button</h5>
+             <p class="white-text">Welcome, {{ username }}. We're glad that you're creating your first bucketlist here. You will be using this button to add more bucketlists and even add items to a bucketlist. Happy adventure!</p>
+           </div>
+         </div>
 
-    <!-- Adding and editing options -->
-      <div class="fixed-action-btn">
-        <a href="#" class="btn-floating green btn-large"><i class="large material-icons">add</i></a>
-        <ul>
-          <li><a href="#" class="btn-floating yellow "><i class="large material-icons">insert_chart</i></a></li>
-          <li><a href="#" class="btn-floating blue "><i class="large material-icons">format_quote</i></a></li>
-          <li><a href="#" class="btn-floating green"><i class="large material-icons">publish</i></a></li>
-          <li><a href="#" class="btn-floating orange"><i class="large material-icons">attach_file</i></a></li>
-        </ul>
+      <!-- Form for adding Bucketlist: it's a modal! -->
+      <div id="create_bucketlist" class="modal">
+        <div class="modal-content">
+          <h4>Enter Bucketlist Details</h4>
+          <div id="create_bucketlist" class="col s12">
+            <form class="col s12" method="post" action="create_bucketlist/">
+            <div class="input-field col s12">
+            <i class="material-icons prefix">assignment</i>
+            <input id="icon_prefix" type="text" name="bucketlist_name" required>
+            <label for="icon_prefix">Bucketlist Name</label>
+            </div>
+	    <div class="input-field col s12">
+	     <i class="material-icons prefix">assessment</i>
+             <textarea id="textarea1" class="materialize-textarea" name="bucketlist_desc"></textarea>
+             <label for="icon_prefix">Bucketlist Description</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="" class="left btn modal-action modal-close waves-effect waves-teal red darken-3"><i class="material-icons right">cancel</i>Cancel</a>
+	  <button class="btn waves-teal green darken-3"><i class="material-icons right">add</i>Create</button>
+        </div>
+	</form>
       </div>
 {% endblock %}
