@@ -63,6 +63,7 @@ def index():
   session['logged_in'] = False
   return render_template("index.html")
 
+# Bucketlist CRUD
 @app.route('/dashboard/')
 def dashboard():
   ''' Dashboard for user interaction with bucketlist: has a list of bucketlists '''
@@ -77,7 +78,6 @@ def dashboard():
   flash("You are not logged in. Please log in.")
   return render_template("index.html")
 
-# Bucketlist CRUD
 @app.route('/dashboard/create_bucketlist/', methods=['POST'])
 def create_bucketlist():
   ''' Create bucketlist from form data '''
@@ -86,14 +86,10 @@ def create_bucketlist():
   bucketlist_details = (name, description)
   if get_session_user is not None:
       create_bucketlist = get_session_user().add_bucketlist(bucketlist_details)
+      flash(create_bucketlist[1])
       return redirect("dashboard/")
   flash("Your session has expired.")
   return render_template("index.html")
-
-@app.route('/dashboard/bucketlists/<bucketlist_name>/')
-def display_bucketlist_details(bucketlist_name):
-  ''' Display the details of a bucketlist '''
-  return "This is yet to be implemented"
 
 @app.route('/dashboard/bucketlists/<bucketlist_name>/delete/')
 def delete_bucketlist(bucketlist_name):
@@ -111,9 +107,40 @@ def delete_bucketlist(bucketlist_name):
 @app.route('/dashboard/bucketlists/<bucketlist_name>/update/', methods=['POST'])
 def update_bucketlist_details(bucketlist_name):
   ''' Updates the bucketlist details from a form '''
-  return "This feature is yet to be implemented"
+  name = request.form.get('bucketlist_name')
+  description = request.form.get('bucketlist_desc')
+  bucketlist_details = (name, description)
+  if get_session_user is not None:
+      session_user = get_session_user()
+      for bucketlist in session_user.available_bucketlists:
+          if str(bucketlist) == bucketlist_name:
+              update_bucketlist = session_user.change_bucketlist_details(bucketlist, bucketlist_details)
+              flash(update_bucketlist)
+              return redirect("dashboard/")
+  flash("Your session has expired.")
+  return render_template("index.html")
 
 # Bucketlist Items CRUD
+@app.route('/dashboard/bucketlists/<bucketlist_name>/')
+def display_bucketlist_items(bucketlist_name):
+    ''' Read bucketlist items and display them '''
+    if session['logged_in']:
+      if get_session_user() is not None:
+          session_user = get_session_user()
+          for bucketlist in session_user.available_bucketlists:
+              if str(bucketlist) == bucketlist_name:
+                  target_index = session_user.available_bucketlists.index(bucketlist)
+                  target_bucketlist = session_user.available_bucketlists[target_index]
+                  items = target_bucketlist.items
+                  empty_bucketlist = (len(items) == 0)
+                  flash("You can control {} bucketlist items from here".format(target_bucketlist))
+                  return render_template("manipulate_items.html",bucketlist=target_bucketlist, username=get_session_user().name, empty_bucketlist=empty_bucketlist, session_user=session_user)
+      else:
+          flash("Your session has expired.")
+          return render_template("index.html")
+    flash("You are not logged in. Please log in.")
+    return render_template("index.html")
+
 @app.route('/dashboard/bucketlists/<bucketlist_name>/add_item/', methods=['POST'])
 def add_bucketlist_item(bucketlist_name):
   ''' Add item details to bucketlist_name from a form '''
@@ -124,7 +151,7 @@ def remove_bucketlist_item(bucketlist_name, item_name):
   ''' Remove item_name from bucketlist_name '''
   return "This is yet to be implemented"
 
-@app.route('/dashboard/bucketlists/<bucketlist_name>/update_item/<item_name>/<item_details>/')
+@app.route('/dashboard/bucketlists/<bucketlist_name>/update_item/')
 def update_bucketlist_item(bucketlist_name, item_details):
   ''' Update item_name in bucketlist_name with item_details '''
   return "This is yet to be implemented"
