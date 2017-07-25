@@ -33,12 +33,12 @@ class BucketList:
         self.items.append(new_item)
         return (new_item, "{} added successfully".format(item_name))
 
-    def remove_item(self, item_name):
-        if item_name not in self.items:
+    def remove_item(self, bucketlist_item):
+        if bucketlist_item not in self.items:
             raise Exception("{} does not exist.".format(item_name))
-        self.items.remove(item_name)
+        self.items.remove(bucketlist_item)
         # the class instance of bucketlist item will be garbage collected
-        return "{} removed successfully".format(item_name)
+        return "{} removed successfully".format(bucketlist_item)
 
     def __repr__(self):
         ''' Represent item by name '''
