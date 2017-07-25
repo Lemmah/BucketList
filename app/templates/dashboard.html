@@ -2,14 +2,12 @@
 {% block title %}Dream Buckets | Dashboard{% endblock %}
 {% block nav_menu_items %}
   <ul id="nav-mobile" class="left hide-on-med-and-down">
-   <li><a href="#bucketlist_definition" class="waves-effect waves-teal btn-flat">Bucket List?</a></li>
   </ul>
   <ul id="nav-mobile" class="right hide-on-med-and-down">
     <li><a href="#" class="waves-effect waves-teal btn-flat">{{ username }}</a></li>
     <li><a href="/logout/" class="waves-effect waves-teal btn-flat">LogOut</a></li>
   </ul>
   <ul class="side-nav" id="mobile-demo">
-    <li><a href="#bucketlist_definition">BucketList?</a></li>
     <li><a href="/logout/">Logout</a></li>
   </ul>
 {% endblock %}
@@ -47,7 +45,7 @@
 	    </a>
 	    <ul>
 	      <li><a href="bucketlists/{{ bucketlist }}/delete/" class="btn-floating red tooltipped" data-position="top" data-delay="10" data-tooltip="Delete Bucketlist"><i class="material-icons">delete</i></a></li>
-	      <li><a class="btn-floating green tooltipped" data-position="top" data-delay="10" data-tooltip="Add Items"><i class="material-icons">note_add</i></a></li>
+	      <li><a href="bucketlists/{{ bucketlist }}/" class="btn-floating green tooltipped" data-position="top" data-delay="10" data-tooltip="Add Items"><i class="material-icons">note_add</i></a></li>
 	      <li><a href="#edit_bucketlist" class="btn-floating blue tooltipped" data-position="top" data-delay="10" data-tooltip="Edit Bucketlist"><i class="material-icons">mode_edit</i></a></li>
 	    </ul>
 	  </div>
