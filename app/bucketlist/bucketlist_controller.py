@@ -39,7 +39,5 @@ class BucketListController:
 
     def delete_bucketlist(self, bucketlist):
         ''' Functionality to delete bucketlist '''
-        target_bucketlist = bucketlist.name
-        self.available_bucketlists.remove(bucketlist.name)
-        bucketlist.name = None
-        return "Successfully deleted {} bucketlist".format(target_bucketlist)
+        self.available_bucketlists.remove(bucketlist)
+        return "Successfully deleted {} bucketlist".format(bucketlist)
