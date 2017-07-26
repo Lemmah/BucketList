@@ -13,10 +13,6 @@ class BucketList:
         self.items = []
         self.owner = owner
 
-    @property
-    def bucket_id(self):
-        return "{}-{}".format(self.owner, self.name)
-
     def add_item(self, item_details, owner):
         # initialize an instance of a BucketListItem
         item_name = item_details[0]

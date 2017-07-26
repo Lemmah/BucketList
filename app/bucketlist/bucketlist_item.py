@@ -1,8 +1,7 @@
 # A bucketlist item and all it's attributes
 
-
 class BucketListItem:
-    ''' Tis is the bucketlist item object '''
+    ''' This is the bucketlist item object '''
 
     def __init__(self, name, category, description=None, status=None, bucketlist=None):
         ''' Constructing the bucketlist item while handling possible exceptions '''
