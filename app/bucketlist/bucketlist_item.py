@@ -22,3 +22,7 @@ class BucketListItem:
         else:
             self.status = "done"
         return self.status
+
+    def __repr__(self):
+        ''' Item representation '''
+        return self.name
