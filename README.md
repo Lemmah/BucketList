@@ -23,7 +23,7 @@ in your terminal and if its not greater than or equal to 3.5, you're not in big 
 
 ### Installing
 
-Now, you have python3 and a way of running a virtual environment. Lets set up the project environment.
+Now, you have python3 and a way of running a virtual environment. Lets set up the project environment.(remember we're still in the app directory)
 
 1. Create your virtual environment. Usually, without any wrappers:
 ```
@@ -39,16 +39,23 @@ pip install -r requirements.txt
 ```
 
 This is enough to get you started.
-**More instructions are coming up as the project advances**.
+You can now run the application using:
+`gunicorn runapp:app --log-file -`
+or
+`python runapp.py`
+
 
 ## Running the tests
 
-Automated tests are yet to be done, this is coming up too.
-
+Easy, just:
+`pytest app/`
 
 ## Deployment
 
-This system is bound to be deployed in Heroku...deployment instructions are coming up soon too.
+This app is ready for Heroku. You can deploy your copy of this app by:
+`heroku create <your_url_name>` (where <your_url_name> is what you want to call your app)
+`git push heroku master` 
+..and boom, you're done! You can chat me on gitter in case of any problems.(gitter link is on badge above)
 
 ## Built With
 
@@ -57,7 +64,7 @@ This system is bound to be deployed in Heroku...deployment instructions are comi
 
 ## Contributing
 
-Contributing to this project is closed for the first month. Thereafter, you can make your pull request.
+Contributing to this project is closed for the first month. Thereafter, you can make your pull request. Three more days before you can make your pull request. :D
 
 ## Versioning
 
