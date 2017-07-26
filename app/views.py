@@ -144,7 +144,20 @@ def display_bucketlist_items(bucketlist_name):
 @app.route('/dashboard/bucketlists/<bucketlist_name>/add_item/', methods=['POST'])
 def add_bucketlist_item(bucketlist_name):
   ''' Add item details to bucketlist_name from a form '''
-  return "This is yet to be implemented"
+  name = request.form.get('item_name')
+  description = request.form.get('item_desc')
+  category = str(request.form.get('item_category'))
+  item_details = (name, category, description)
+  if get_session_user() is not None:
+      session_user = get_session_user()
+      for bucketlist in session_user.available_bucketlists:
+          if str(bucketlist) == bucketlist_name:
+              target_index = session_user.available_bucketlists.index(bucketlist)
+              target_bucketlist = session_user.available_bucketlists[target_index]
+              add_item = target_bucketlist.add_item(item_details,owner=session_user)
+              return redirect("dashboard/")
+  flash("Your session has expired.")
+  return redirect("/")
 
 @app.route('/dashboard/bucketlists/<bucketlist_name>/remove_item/<item_name>/')
 def remove_bucketlist_item(bucketlist_name, item_name):
