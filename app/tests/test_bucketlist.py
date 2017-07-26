@@ -18,10 +18,6 @@ class TestBucketList(unittest.TestCase):
         ''' Checking that bucketlist has been created '''
         self.assertEqual(isinstance(self.new_bucketlist, BucketList), True)
 
-    def test_bucketlist_has_id(self):
-        ''' Asserting that any bucketlist created has an id '''
-        self.assertNotEqual(self.new_bucketlist.bucket_id, None)
-
     def test_bucketlist_items_is_list(self):
         ''' Asserting that a bucketlist can take a list of items '''
         self.assertEqual(isinstance(self.new_bucketlist.items, list), True)
@@ -37,7 +33,7 @@ class TestBucketList(unittest.TestCase):
         new_item = self.new_bucketlist.add_item(self.new_item_details, self.bucketlist_owner)
         self.assertEqual(new_item[1], "ItemName added successfully")
         # ensure that it is indeed in the list of items
-        self.assertIn(self.new_item_details[0], self.new_bucketlist.items)
+        self.assertIn(new_item[0], self.new_bucketlist.items)
         # check and ascertain that a bucketlist_item object is created
         self.assertEqual(isinstance(new_item[0], BucketListItem), True)
 
@@ -64,10 +60,10 @@ class TestBucketList(unittest.TestCase):
         # Create item before removal
         new_item = self.new_bucketlist.add_item(self.new_item_details, self.bucketlist_owner)
         # self.assert message returned on removal
-        remove_item = self.new_bucketlist.remove_item(self.new_item_details[0])
-        self.assertEqual(remove_item, "ItemName removed successfully")
+        remove_item = self.new_bucketlist.remove_item(new_item[0])
+        self.assertEqual(remove_item, "{} item has been removed successfully".format(self.new_item_details[0]))
         # ensure that the item is no longer in the list
-        self.assertEqual(self.new_item_details[0] in self.new_bucketlist.items, False)
+        self.assertEqual(new_item in self.new_bucketlist.items, False)
 
     # 3. Testing for handling of edge cases
     def test_adding_same_bucketlist_items_twice(self):

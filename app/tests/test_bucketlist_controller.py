@@ -31,26 +31,19 @@ class TestBucketListController(unittest.TestCase):
         new_bucketlist_details = ("NewName", "Description: Optional")
         new_bucketlist = self.bucketlist_controller.add_bucketlist(new_bucketlist_details)
         self.assertEqual(isinstance(new_bucketlist[0], BucketList), True)
-        self.assertEqual(new_bucketlist_details[0] in self.bucketlist_controller.available_bucketlists, True)
         self.assertEqual(new_bucketlist[1], "{} bucketlist has been created".format(new_bucketlist_details[0]))
 
     def test_bucketlist_controller_can_update_bucketlist(self):
         ''' Asserting that bucketlist controller can change bucketlist details '''
-        # rename, change details
-        new_name, new_description = "NewBucket", "NewDetails: This is new"
-        old_name = self.bucketlist.name
-        rename = self.bucketlist_controller.rename_bucketlist(self.bucketlist, new_name)
-        self.assertEqual(rename, "{} bucketlist has been renamed to {}".format(old_name, new_name))
-        self.assertEqual(self.bucketlist.name, new_name)
-        change_details = self.bucketlist_controller.change_bucketlist_details(self.bucketlist, new_description)
-        self.assertEqual(change_details, "{} has been updated accordingly".format(self.bucketlist.name))
-        self.assertEqual(self.bucketlist.description, new_description)
+        new_details = ("New Name", "New Description")
+        update_bucketlist = self.bucketlist_controller.change_bucketlist_details(self.bucketlist, new_details)
+        self.assertEqual(update_bucketlist, "{} has been updated accordingly".format(self.bucketlist.name))
 
     def test_bucketlist_controller_can_delete_bucketlist(self):
         ''' Asserting that a bucketlist controller can delete a bucketlist '''
         # add set up test bucketlist to list of available bucketlists
-        self.bucketlist_controller.available_bucketlists.append(self.bucketlist.name)
-        self.assertEqual(self.bucketlist.name in self.bucketlist_controller.available_bucketlists, True)
+        self.bucketlist_controller.available_bucketlists.append(self.bucketlist)
+        # remember it's name
+        bucketlist_name = self.bucketlist.name
         delete_bucketlist = self.bucketlist_controller.delete_bucketlist(self.bucketlist)
-        self.assertEqual(self.bucketlist.name not in self.bucketlist_controller.available_bucketlists, True)
-        self.assertEqual(str(self.bucketlist), 'Bucketlist does not exist')
+        self.assertEqual(delete_bucketlist,"Successfully deleted {} bucketlist".format(bucketlist_name))

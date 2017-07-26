@@ -25,7 +25,7 @@ class BucketList:
 
     def remove_item(self, bucketlist_item):
         if bucketlist_item not in self.items:
-            raise Exception("{} does not exist.".format(item_name))
+            raise Exception("{} does not exist.".format(bucketlist_item))
         self.items.remove(bucketlist_item)
         # the class instance of bucketlist item will be garbage collected
         return "{} item has been removed successfully".format(bucketlist_item)
