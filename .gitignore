@@ -1,3 +1,4 @@
 appEnv
 *.pyc
 *cache*
+.coverage
