@@ -54,7 +54,7 @@ def register():
           return render_template("index.html")
   user = User(email, password, name)
   registered_users.append(user)
-  flash("Registration for {} was successfull, please login with details.".format(user.name))
+  flash("Registration for {} was successful, please login with details.".format(user.name))
   return render_template("index.html")
 
 @app.route('/')
@@ -159,13 +159,41 @@ def add_bucketlist_item(bucketlist_name):
   flash("Your session has expired.")
   return redirect("/")
 
-@app.route('/dashboard/bucketlists/<bucketlist_name>/remove_item/<item_name>/')
+@app.route('/dashboard/bucketlists/<bucketlist_name>/<item_name>/delete/')
 def remove_bucketlist_item(bucketlist_name, item_name):
   ''' Remove item_name from bucketlist_name '''
-  return "This is yet to be implemented"
+  if get_session_user is not None:
+      session_user = get_session_user()
+      for bucketlist in session_user.available_bucketlists:
+          if str(bucketlist) == bucketlist_name:
+              target_index = session_user.available_bucketlists.index(bucketlist)
+              target_bucketlist = session_user.available_bucketlists[target_index]
+              for bucketlist_item in target_bucketlist.items:
+                  if str(bucketlist_item) == item_name:
+                      delete_item = target_bucketlist.remove_item(bucketlist_item)
+                      flash(delete_item)
+                      return redirect("/dashboard/")
+  flash("The bucketlist item you are trying to delete is not available")
+  return redirect("/dashboard/")
 
-@app.route('/dashboard/bucketlists/<bucketlist_name>/update_item/')
-def update_bucketlist_item(bucketlist_name, item_details):
+@app.route('/dashboard/bucketlists/<bucketlist_name>/<item_name>/update/', methods=['POST'])
+def update_bucketlist_item(bucketlist_name, item_name):
   ''' Update item_name in bucketlist_name with item_details '''
-  return "This is yet to be implemented"
+  name = request.form.get('item_name')
+  description = request.form.get('item_desc')
+  category = str(request.form.get('item_category'))
+  new_details = (name, category, description)
+  if get_session_user is not None:
+      session_user = get_session_user()
+      for bucketlist in session_user.available_bucketlists:
+          if str(bucketlist) == bucketlist_name:
+              target_index = session_user.available_bucketlists.index(bucketlist)
+              target_bucketlist = session_user.available_bucketlists[target_index]
+              for bucketlist_item in target_bucketlist.items:
+                  if str(bucketlist_item) == item_name:
+                      update_item = target_bucketlist.update_item(bucketlist_item, new_details)
+                      flash(update_item)
+                      return redirect("/dashboard/")
+  flash("The bucketlist item you are trying to delete is not available")
+  return redirect("/dashboard/")
 
