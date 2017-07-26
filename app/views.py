@@ -213,3 +213,13 @@ def remove_bucketlist_item(bucketlist_name, item_name):
   flash("Your session has expired.")
   return redirect("/")
 
+# Catch empty fields
+@app.route('/error_page')
+def empty_fields():
+    ''' Throw an error if a user has empty fields '''
+    return render_template('/error_page.html')
+
+# Edge case: checkout for empty fields
+def empty(field):
+    ''' Return true if field is empty '''
+    empty_string = field.strip()
