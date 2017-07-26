@@ -2,3 +2,4 @@ appEnv
 *.pyc
 *cache*
 .coverage
+coverage.xml
