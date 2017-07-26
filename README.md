@@ -56,7 +56,7 @@ This app is ready for Heroku. You can deploy your copy of this app by:
 `heroku create <your_url_name>` (where <your_url_name> is what you want to call your app)
 `git push heroku master` 
 ..and boom, you're done! You can chat me on gitter in case of any problems.(gitter link is on badge above)
-
+If you have never worked with Heroku, you can learn how to [Deploy Python Applications on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python#introduction)
 ## Built With
 
 * [Python Flask](https://www.fullstackpython.com/flask.html) - The web framework used
