@@ -32,7 +32,13 @@ class BucketList:
             raise Exception("{} does not exist.".format(item_name))
         self.items.remove(bucketlist_item)
         # the class instance of bucketlist item will be garbage collected
-        return "{} removed successfully".format(bucketlist_item)
+        return "{} item has been removed successfully".format(bucketlist_item)
+
+    def update_item(self, target_item, new_details):
+        ''' Update bucketlist items '''
+        target_item.name, target_item.category, target_item.description = (new_details)
+        return "{} bucketlist item has been update accordingly.".format(target_item.name)
+
 
     def __repr__(self):
         ''' Represent item by name '''
