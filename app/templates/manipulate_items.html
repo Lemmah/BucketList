@@ -38,24 +38,33 @@
 	      <i class="large material-icons">settings</i>
 	    </a>
 	    <ul>
-	      <li><a href="bucketlists/{{ bucketlist }}/delete/" class="btn-floating red tooltipped" data-position="top" data-delay="10" data-tooltip="Delete Bucketlist"><i class="material-icons">delete</i></a></li>
-	      <li><a href="#edit_bucketlist" class="btn-floating blue tooltipped" data-position="top" data-delay="10" data-tooltip="Edit Bucketlist"><i class="material-icons">mode_edit</i></a></li>
+	      <li><a href="{{ bucketlist_item.name }}/delete/" class="btn-floating red tooltipped" data-position="top" data-delay="10" data-tooltip="Delete Bucketlist"><i class="material-icons">delete</i></a></li>
+	      <li><a href="#edit_bucketlist_item" class="btn-floating blue tooltipped" data-position="top" data-delay="10" data-tooltip="Edit Bucketlist"><i class="material-icons">mode_edit</i></a></li>
 	    </ul>
 	  </div>
-	  <!-- Form for editing a Bucketlist: it's a modal! -->
-      <div id="edit_bucketlist" class="modal">
+	  <!-- Form for editing a Bucketlist item: it's a modal! -->
+      <div id="edit_bucketlist_item" class="modal">
         <div class="modal-content">
           <h4>Edit {{ bucketlist_item.name }}</h4>
           <div id="create_bucketlist" class="col s12">
-            <form class="col s12" method="post" action="bucketlists/{{ bucketlist.name }}/update/">
+            <form class="col s12" method="post" action="{{ bucketlist_item.name }}/update/">
             <div class="input-field col s12">
             <i class="material-icons prefix">assignment</i>
-            <input id="icon_prefix" type="text" name="bucketlist_name" value="{{ bucketlist.name }}" required>
+            <input id="icon_prefix" type="text" name="item_name" value="{{ bucketlist_item.name }}" required>
             <label for="icon_prefix">Bucketlist Name</label>
             </div>
 	    <div class="input-field col s12">
+	     <i class="material-icons prefix">accessibility</i>
+	    <select name="item_category" value="{{ bucketlist_item.name }}" required>
+	      <option value="" disabled>Choose Category</option>
+	      <option value="Career">Career</option>
+	      <option value="Health">Health</option>
+	      <option value="Entertainment">Entertainment</option>
+	    </select>
+            </div>
+	    <div class="input-field col s12">
 	     <i class="material-icons prefix">assessment</i>
-             <textarea id="textarea1" class="materialize-textarea" name="bucketlist_desc">{{ bucketlist_item.details }}</textarea>
+             <textarea id="textarea1" class="materialize-textarea" name="item_desc">{{ bucketlist_item.description }}</textarea>
              <label for="icon_prefix">Bucketlist Description</label>
             </div>
           </div>
