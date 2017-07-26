@@ -8,20 +8,10 @@ class BucketList:
 
     def __init__(self, name, details=None, items=None, owner=None):
         ''' Constructing and instance of the object '''
-        # Every bucketlist must have an owner
-        if owner is None:
-            raise Exception("Every bucketlist must have an owner")
         self.name = name
         self.details = details
-        if items is not None:
-            self.items = items
-        else:
-            self.items = []
+        self.items = []
         self.owner = owner
-
-    @property
-    def bucket_id(self):
-        return "{}-{}".format(self.owner, self.name)
 
     def add_item(self, item_details, owner):
         # initialize an instance of a BucketListItem
@@ -29,16 +19,22 @@ class BucketList:
         # ensure that items does not exist in items
         if item_name in self.items:
             raise Exception("{} already exists!".format(item_name))
-        self.items.append(item_name)
         new_item = BucketListItem(*item_details, bucketlist=owner)
+        self.items.append(new_item)
         return (new_item, "{} added successfully".format(item_name))
 
-    def remove_item(self, item_name):
-        if item_name not in self.items:
-            raise Exception("{} does not exist.".format(item_name))
-        self.items.remove(item_name)
+    def remove_item(self, bucketlist_item):
+        if bucketlist_item not in self.items:
+            raise Exception("{} does not exist.".format(bucketlist_item))
+        self.items.remove(bucketlist_item)
         # the class instance of bucketlist item will be garbage collected
-        return "{} removed successfully".format(item_name)
+        return "{} item has been removed successfully".format(bucketlist_item)
+
+    def update_item(self, target_item, new_details):
+        ''' Update bucketlist items '''
+        target_item.name, target_item.category, target_item.description = (new_details)
+        return "{} bucketlist item has been update accordingly.".format(target_item.name)
+
 
     def __repr__(self):
         ''' Represent item by name '''

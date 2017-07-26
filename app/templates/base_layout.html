@@ -23,18 +23,6 @@
         </div>
       </nav>
     </header>
-
-    <!-- Defining a bucketlist -->
-      <div id="bucketlist_definition" class="modal">
-        <div class="modal-content">
-          <h4>Bucket list?</h4>
-          <p>A bucket list is, by definition, a list of things that you want to do before you die.  The term gained in popularity after the 2007 movie “The Bucket List” where Morgan Freeman and Jack Nicholson (both of whose characters are dying of cancer) create a bucket list of things to do before they die – and then actually do them. </p>
-        </div>
-        <div class="modal-footer">
-          <a href="" class="btn modal-action modal-close waves-effect waves-teal green darken-3">Ok, got it.</a>
-        </div>
-      </div>
-
     <!-- The main body -->
     <section>
     {% block body %}{% endblock %}
@@ -73,6 +61,13 @@
 	    $("#register_tab").addClass("active");
 	});
 	});
+	// Intialize dropdown
+	$('.dropdown-button').dropdown();
+	// Initialize select
+	$(document).ready(function() {
+	$('select').material_select();
+	});
+
 	</script>
     </body>
   </html>
