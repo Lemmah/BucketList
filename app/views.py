@@ -144,6 +144,7 @@ def add_bucketlist_item(bucketlist_name):
               target_index = session_user.available_bucketlists.index(bucketlist)
               target_bucketlist = session_user.available_bucketlists[target_index]
               add_item = target_bucketlist.add_item(item_details,owner=session_user)
+              flash(add_item[1])
               return redirect("dashboard/")
   flash("Your session has expired.")
   return redirect("/")
