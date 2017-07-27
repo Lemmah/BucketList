@@ -37,4 +37,7 @@ class TestBucketListItem(unittest.TestCase):
             self.bucketlist_item.change_status()
             bucketlist_item_status = self.bucketlist_item.status.lower()
             self.assertEqual(bucketlist_item_status, "done")
-
+        # Test actual toggling of status
+        for statuses in range(4):
+            new_status = self.bucketlist_item.change_status()
+            self.assertEqual(new_status, self.bucketlist_item.status)

@@ -9,10 +9,7 @@ class BucketListItem:
         self.category = category
         self.description = description
         self.bucketlist_id = bucketlist
-        if status is None:
-            self.status = "in_progress"
-        else:
-            self.status = status
+        self.status = "in_progress"
 
     def change_status(self):
         ''' toggle the status of a bucketlist item '''
