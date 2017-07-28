@@ -75,11 +75,6 @@ class TestBucketList(unittest.TestCase):
         new_item = self.new_bucketlist.add_item(self.new_item_details, self.bucketlist_owner)
         # ensure that calling the add_item method with the same details raises and exception
         self.assertRaises(Exception, self.new_bucketlist.add_item, self.new_item_details)
-        # Testing the actual exception
-        with self.assertRaises(Exception) as context:
-            self.new_bucketlist.add_item(self.new_item_details)
-            self.new_bucketlist.add_item(self.new_item_details)
-        self.assertTrue('{} already exists'.format(self.new_item_details[0] in str(context.exception)))
 
     def test_deleting_non_existing_bucketlist_item(self):
         ''' Testing that non-existing items do not get other items deleted '''
