@@ -51,7 +51,10 @@ class TestBucketList(unittest.TestCase):
         # confirming that name is as in new_item_details
         self.assertEqual(item_name, self.new_item_details[0])
         # Test for changing the all the item details
-        new_item.name, new_item.category, new_item.description = "ChangedName", "ChangedCategory", "ChangedDescription"
+        new_item_updates = ("ChangedName", "ChangedCategory", "ChangedDescription")
+        # Test item update success message
+        update_item = self.new_bucketlist.update_item(new_item,new_item_updates)
+        self.assertEqual(update_item, "{} bucketlist item has been updated accordingly.".format(new_item.name))
         self.assertEqual((new_item.name, new_item.category, new_item.description), ("ChangedName", "ChangedCategory", "ChangedDescription"))
         self.assertNotEqual(item_name, new_item.name)
 
